@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApplication", "WebApplication1\MetricConverter.WebApplication.csproj", "{EFF35DB3-D342-4799-94F4-FC98932C2C79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApi", "WebApi\MetricConverter.WebApi.csproj", "{155FC01A-A764-4BFA-924B-8E002B209494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.Library", "MetricConversion.Library\MetricConverter.Library.csproj", "{F547EE95-C2B3-442C-88D9-ED8132670DAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApp", "MetricConverter.WebApp\MetricConverter.WebApp.csproj", "{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFF35DB3-D342-4799-94F4-FC98932C2C79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF35DB3-D342-4799-94F4-FC98932C2C79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF35DB3-D342-4799-94F4-FC98932C2C79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF35DB3-D342-4799-94F4-FC98932C2C79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{155FC01A-A764-4BFA-924B-8E002B209494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155FC01A-A764-4BFA-924B-8E002B209494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155FC01A-A764-4BFA-924B-8E002B209494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155FC01A-A764-4BFA-924B-8E002B209494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA066388-D6A6-43E2-8C8E-384986720ACC}
+	EndGlobalSection
+EndGlobal

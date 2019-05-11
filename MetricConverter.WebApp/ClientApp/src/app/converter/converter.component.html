@@ -1,0 +1,20 @@
+<h1>Converter</h1>
+
+<p>This is a simple example of a Unit Converter.</p>
+
+
+<form [formGroup]="convertForm" (ngSubmit)="onSubmit()">
+  <p>Select your From unit</p>
+  <select class="custom-select" (change)="changeFromUnit($event)" formControlName="fromUnit">
+    <option value="" disabled>unit</option>
+    <option *ngFor="let unit of fromUnits" [ngValue]="unit">{{unit}}</option>
+  </select>
+
+  <p>Select your To unit</p>
+  <select class="custom-select" (change)="changeToUnit($event)" formControlName="toUnit">
+    <option value="" disabled>unit</option>
+    <option *ngFor="let unit of toUnits" [ngValue]="unit">{{unit}}</option>
+  </select>
+
+  <button class="btn btn-primary">Get Conversion</button>
+</form>
