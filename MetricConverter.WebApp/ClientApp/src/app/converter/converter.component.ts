@@ -31,7 +31,7 @@ export class ConverterComponent {
   public toUnit: "";
   public rate: number = 0.0;
   public result: number = 0.0;
-  public fromUnits: any = ['Centimeter', 'Inch', 'Meter', 'Yard'];
+  public fromUnits: any = ['Centimeter', 'Inch', 'Meter', 'Yard', 'Celcius', 'Fahreinheit'];
   public toUnits: any = [''];
 
   public changeFromUnit() {
@@ -51,14 +51,14 @@ export class ConverterComponent {
     this.showResults = false;
   }
 
-  public changeToValue() {
+  public changeFromValue() {
     this.fromValue = this.convertForm.value.fromValue;
     //alert("Changed From Value: " + JSON.stringify(this.convertForm.value.fromValue));
     this.showResults = false;
   }
 
   onSubmit() {
-    this.rate = 2.4;
+    //this.rate = 2.4;
     //alert("Submitted: " + JSON.stringify(this.convertForm.value))
     this.showResults = true;
     //this.result = this.fromValue * this.rate;

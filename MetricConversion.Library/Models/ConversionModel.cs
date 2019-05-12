@@ -10,10 +10,12 @@ namespace MetricConverter.Library.Models
         public string Type { get; set; }
         public double FromValue { get; set;}
         public double ToValue { get; set; }
+        public string Formula { get; set; }
     }
 
-    public class AppConfig
-    {
-        public List<ConversionModel> Conversions { get; set; }
-    }
+    //TODO Remove
+    //public class AppConfig
+    //{
+    //    public List<ConversionModel> Conversions { get; set; }
+    //}
 }

@@ -19,14 +19,14 @@
 
   <div *ngIf="toUnitVisibility">
     <p>Enter the value to convert</p>
-    <input type="number" (change)="changeToValue($event)" value={{fromValue}} formControlName="fromValue" />
+    <input type="number" (change)="changeFromValue($event)" value={{fromValue}} formControlName="fromValue" />
   </div>
 
-  <button class="btn btn-primary">Get Conversion</button>
+  <button class="btn btn-primary">Convert</button>
 
   <div *ngIf="showResults">
     <h4>Result</h4>
     <p>Conversion applied at {{fromValue}} {{fromUnit}}(s) = {{result}} {{toUnit}}(s)</p>
-    <p>At a rate of 1 {{fromUnit}}(s) = {{rate}} {{toUnit}}(s).</p>
+    <!--<p>At a rate of 1 {{fromUnit}}(s) = {{rate}} {{toUnit}}(s).</p>-->
   </div>
 </form>

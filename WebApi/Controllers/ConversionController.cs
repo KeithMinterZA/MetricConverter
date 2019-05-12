@@ -2,6 +2,7 @@
 using MetricConverter.Services.Library;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 
 namespace MetricConverter.WebApi.Controllers
 {
@@ -33,11 +34,11 @@ namespace MetricConverter.WebApi.Controllers
             return new JsonContent(response);
         }
 
-        [Route("[action]/{fromunit}/{tounit}/{value}")]
+        [Route("[action]/{fromunit}/{tounit}")]
         [HttpGet]
-        public ActionResult Convert([FromRoute] string fromUnit, [FromRoute] string toUnit, [FromRoute] double value)
+        public ActionResult Convert([FromRoute] string fromUnit, [FromRoute] string toUnit, [FromQuery] string fromValue)
         {
-            var response = Converter.Convert(fromUnit, toUnit, value);
+            var response = Converter.Convert(fromUnit, toUnit, double.Parse(fromValue));
             return new JsonContent(response.ToValue);
         }
     }

@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using MetricConverter.Library.Models;
 using Microsoft.Extensions.Configuration;
@@ -34,21 +36,43 @@ namespace MetricConverter.Services.Library
         {
             var convs = Configuration.GetValue<string>("AppConfig:Conversions");
             var arr = JsonConvert.DeserializeObject<IEnumerable<ConversionModel>>(convs);
-            //var convs = Configuration.GetSection("AppConfig");
-            //return convs;
             return arr;
         }
 
         public ConversionModel Convert(string fromUnit, string toUnit, double value)
         {
+            //Get the conversion for the from and to unit specified in config
             var convers = GetConversions();
             var conversions = from conv in convers
                              where conv.FromUnit == fromUnit && conv.ToUnit == toUnit
                              select conv;
             var conversion = conversions.First();
             conversion.FromValue = value;
-            conversion.ToValue = conversion.FromValue * conversion.Rate;
+            //if it is a rate based conversion
+            if (string.IsNullOrEmpty(conversion.Formula))
+                conversion.ToValue = conversion.FromValue * conversion.Rate;             
+            else //otherwise if we need to run a formula, use reflection to get the formula and run it
+                ReflectionCalculate(conversion);
+
             return conversion;
+        }
+
+        private static void ReflectionCalculate(ConversionModel conversion)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            var refType = conversion.Formula.Split('|')[0];
+            var refMethod = conversion.Formula.Split('|')[1];
+            Type type = assembly.GetType(refType);
+
+            var obj = Activator.CreateInstance(type);
+
+            // Alternately you could get the MethodInfo for the TestRunner.Run method
+            var args = new object[] { conversion.FromValue};
+            conversion.ToValue = (double)type.InvokeMember(refMethod,
+                              BindingFlags.Default | BindingFlags.InvokeMethod,
+                              null,
+                              obj,
+                              args);
         }
     }
 }

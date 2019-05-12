@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace MetricConverter.Library.Integrations
@@ -18,9 +19,13 @@ namespace MetricConverter.Library.Integrations
 
         public async Task<T> Get<T>(string endpoint = "")
         {
+            var enc = UrlEncoder.Create(new TextEncoderSettings());
+            //var uri = enc.Encode($"{BaseUrl}/{UrlSegment}/{endpoint}");
+            var uri = $"{BaseUrl}/{UrlSegment}/{endpoint}";
+            
             var client = new HttpClient
             {
-                BaseAddress = new Uri($"{BaseUrl}/{UrlSegment}/{endpoint}")
+                BaseAddress = new Uri(uri)
             };
             //var response = await client.GetAsync("");
             var response = await client.GetAsync("");

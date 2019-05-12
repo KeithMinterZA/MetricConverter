@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Encodings.Web;
 using MetricConverter.Library.Models;
 using Microsoft.Extensions.Configuration;
 
@@ -21,8 +22,8 @@ namespace MetricConverter.Library.Integrations
         }
 
         public double GetConversion(string fromUnit, string toUnit, double fromValue)
-        {
-            return Get<double>($"convert/{fromUnit}/{toUnit}/{fromValue}").Result;
+        {            
+            return Get<double>($"convert/{fromUnit}/{toUnit}?fromvalue={fromValue}").Result;
         }
     }
 }
