@@ -10,11 +10,23 @@
     <option *ngFor="let unit of fromUnits" [ngValue]="unit">{{unit}}</option>
   </select>
 
-  <p>Select your To unit</p>
-  <select class="custom-select" (change)="changeToUnit($event)" formControlName="toUnit">
-    <option value="" disabled>unit</option>
-    <option *ngFor="let unit of toUnits" [ngValue]="unit">{{unit}}</option>
-  </select>
+  <div *ngIf="toUnitVisibility">
+    <p>Select your To unit</p>
+    <select class="custom-select" (change)="changeToUnit($event)" formControlName="toUnit">
+      <option *ngFor="let unit of toUnits" [ngValue]="unit">{{unit}}</option>
+    </select>
+  </div>
+
+  <div *ngIf="toUnitVisibility">
+    <p>Enter the value to convert</p>
+    <input type="number" (change)="changeToValue($event)" value={{fromValue}} formControlName="fromValue" />
+  </div>
 
   <button class="btn btn-primary">Get Conversion</button>
+
+  <div *ngIf="showResults">
+    <h4>Result</h4>
+    <p>Conversion applied at {{fromValue}} {{fromUnit}}(s) = {{result}} {{toUnit}}(s)</p>
+    <p>At a rate of 1 {{fromUnit}}(s) = {{rate}} {{toUnit}}(s).</p>
+  </div>
 </form>

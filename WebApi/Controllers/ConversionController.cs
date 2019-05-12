@@ -1,4 +1,5 @@
 ﻿using MetricConverter.Library;
+using MetricConverter.Services.Library;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -16,25 +17,28 @@ namespace MetricConverter.WebApi.Controllers
             Converter = converterService;
         }
 
-        [Route("/fromunits")]
+        [Route("[action]")]
         [HttpGet]
-        public ActionResult GetFromUnits()
+        public ActionResult FromUnits()
         {
-            return new ContentResult();
+            var response = Converter.GetFromUnits();
+            return new JsonContent(response);
         }
 
-        [Route("/tounit/{fromunit}")]
+        [Route("[action]/{fromunit}")]
         [HttpGet]
-        public ActionResult GetToUnits([FromRoute] string fromUnit)
+        public ActionResult ToUnits([FromRoute] string fromUnit)
         {
-            return new ContentResult();
+            var response = Converter.GetToUnits(fromUnit);
+            return new JsonContent(response);
         }
 
-        [Route("/convert/{fromunit}/{tounit}/{value}")]
+        [Route("[action]/{fromunit}/{tounit}/{value}")]
         [HttpGet]
-        public ActionResult GetConversion([FromRoute] string fromUnit, [FromRoute] string toUnit, [FromRoute] double value)
+        public ActionResult Convert([FromRoute] string fromUnit, [FromRoute] string toUnit, [FromRoute] double value)
         {
-            return new ContentResult();
+            var response = Converter.Convert(fromUnit, toUnit, value);
+            return new JsonContent(response.ToValue);
         }
     }
 }

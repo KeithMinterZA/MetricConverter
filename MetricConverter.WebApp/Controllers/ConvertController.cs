@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using MetricConverter.Library.Integrations;
+using MetricConverter.Library.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -10,49 +9,28 @@ namespace MetricConverter.WebApp.Controllers
     [Route("api/[controller]")]
     public class ConvertController : Controller
     {
-        private IConfiguration config { get; }
-        public ConvertController(IConfiguration config)
+        private IWebApi WebApi { get; }
+        public ConvertController(IConfiguration config, IWebApi webApi)
         {
-
-        }
-
-        private static string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        [HttpGet("[action]")]
-        public IEnumerable<string> ToUnits()
-        {
-            var rng = new Random();
-            return null;
+            WebApi = webApi;
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
+        public IEnumerable<string> FromUnits()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
+            return WebApi.GetFromUnits();
         }
 
-        public class WeatherForecast
+        [HttpGet("[action]/{fromUnit}")]
+        public IEnumerable<string> ToUnits(string fromUnit)
         {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
+            return WebApi.GetToUnits(fromUnit);
+        }
 
-            public int TemperatureF
-            {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
-            }
+        [HttpGet("[action]/{fromUnit}/{tounit}/{fromvalue}")]
+        public double Convert(string fromUnit, string toUnit, double fromValue)
+        {
+            return WebApi.GetConversion(fromUnit, toUnit, fromValue);
         }
     }
 }

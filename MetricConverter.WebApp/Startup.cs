@@ -1,3 +1,4 @@
+using MetricConverter.Library.Integrations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,6 +22,7 @@ namespace MetricConverter.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<IWebApi, WebApi>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
