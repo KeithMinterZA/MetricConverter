@@ -1,4 +1,5 @@
-﻿using MetricConverter.Services.Library;
+﻿using MetricConverter.Library.Services;
+using MetricConverter.Services.Library;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace MetricConverter.WebApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IConverterService, ConverterService>();
+            services.AddTransient<IAppConfiguration, AppConfiguration>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

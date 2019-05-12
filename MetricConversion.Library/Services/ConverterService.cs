@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
+using MetricConverter.Library.Exceptions;
 using MetricConverter.Library.Models;
-using Microsoft.Extensions.Configuration;
+using MetricConverter.Library.Services;
 using Newtonsoft.Json;
 
 namespace MetricConverter.Services.Library
 {
     public class ConverterService : IConverterService
     {
-        public IConfiguration Configuration { get; }
-        public ConverterService(IConfiguration config)
+        public IAppConfiguration Configuration { get; }
+        public ConverterService(IAppConfiguration config)
         {
             Configuration = config;
         }
@@ -34,7 +34,7 @@ namespace MetricConverter.Services.Library
 
         public IEnumerable<ConversionModel> GetConversions()
         {
-            var convs = Configuration.GetValue<string>("AppConfig:Conversions");
+            var convs = Configuration.GetString("AppConfig:Conversions");
             var arr = JsonConvert.DeserializeObject<IEnumerable<ConversionModel>>(convs);
             return arr;
         }
@@ -46,18 +46,21 @@ namespace MetricConverter.Services.Library
             var conversions = from conv in convers
                              where conv.FromUnit == fromUnit && conv.ToUnit == toUnit
                              select conv;
-            var conversion = conversions.First();
+            var conversion = conversions.FirstOrDefault();
+            if (conversion == null)
+                throw new ConversionNotFoundException();
+
             conversion.FromValue = value;
             //if it is a rate based conversion
             if (string.IsNullOrEmpty(conversion.Formula))
                 conversion.ToValue = conversion.FromValue * conversion.Rate;             
             else //otherwise if we need to run a formula, use reflection to get the formula and run it
-                ReflectionCalculate(conversion);
+                conversion.ToValue = ReflectionCalculate(conversion);
 
             return conversion;
         }
 
-        private static void ReflectionCalculate(ConversionModel conversion)
+        private static double ReflectionCalculate(ConversionModel conversion)
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             var refType = conversion.Formula.Split('|')[0];
@@ -68,7 +71,7 @@ namespace MetricConverter.Services.Library
 
             // Alternately you could get the MethodInfo for the TestRunner.Run method
             var args = new object[] { conversion.FromValue};
-            conversion.ToValue = (double)type.InvokeMember(refMethod,
+            return (double)type.InvokeMember(refMethod,
                               BindingFlags.Default | BindingFlags.InvokeMethod,
                               null,
                               obj,

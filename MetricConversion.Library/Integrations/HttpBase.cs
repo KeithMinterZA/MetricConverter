@@ -19,7 +19,7 @@ namespace MetricConverter.Library.Integrations
 
         public async Task<T> Get<T>(string endpoint = "")
         {
-            var enc = UrlEncoder.Create(new TextEncoderSettings());
+            //var enc = UrlEncoder.Create(new TextEncoderSettings());
             //var uri = enc.Encode($"{BaseUrl}/{UrlSegment}/{endpoint}");
             var uri = $"{BaseUrl}/{UrlSegment}/{endpoint}";
             
@@ -27,11 +27,14 @@ namespace MetricConverter.Library.Integrations
             {
                 BaseAddress = new Uri(uri)
             };
+            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
             //var response = await client.GetAsync("");
             var response = await client.GetAsync("");
             var stream = await response.Content.ReadAsStreamAsync();
             var serializer = new DataContractJsonSerializer(typeof(T));
-            return (T)serializer.ReadObject(stream);
+            //var serializer = new Datacon(typeof(T));
+            var obj = serializer.ReadObject(stream);
+            return (T)obj;
         }
     }
 }
