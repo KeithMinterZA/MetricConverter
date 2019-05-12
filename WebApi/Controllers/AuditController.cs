@@ -17,7 +17,8 @@ namespace MetricConverter.WebApi.Controllers
         {
             Repo = repo;
             ContextAccessor = httpContextAccessor;
-            RequestUser = ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? ContextAccessor.HttpContext.User.Identity.Name : "UnAuthenticated";
+            RequestUser = ContextAccessor.HttpContext != null && ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? 
+                ContextAccessor.HttpContext.User.Identity.Name : "UnAuthenticated";
         }
 
         // POST api/
