@@ -1,8 +1,9 @@
 ﻿using MetricConverter.Library;
 using MetricConverter.Services.Library;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
+using System.Security.Claims;
 
 namespace MetricConverter.WebApi.Controllers
 {
@@ -11,11 +12,13 @@ namespace MetricConverter.WebApi.Controllers
     public class ConversionController : ControllerBase
     {
         private IConverterService Converter { get; }
-        //private IConfiguration Configuration { get; }
-        public ConversionController(IConfiguration config, IConverterService converterService)
+        private IHttpContextAccessor ContextAccessor { get; set; }
+        private string RequestUser { get; set; }
+        public ConversionController(IConfiguration config, IConverterService converterService, IHttpContextAccessor httpContextAccessor)
         {
-            //Configuration = config;
             Converter = converterService;
+            ContextAccessor = httpContextAccessor;
+            RequestUser = ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? ContextAccessor.HttpContext.User.Identity.Name : "Unauthenticated";
         }
 
         [Route("[action]")]

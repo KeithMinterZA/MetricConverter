@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApp", "MetricConverter.WebApp\MetricConverter.WebApp.csproj", "{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.Library.Test", "MetricConverter.Library.Test\MetricConverter.Library.Test.csproj", "{CC35E320-979F-4C33-AD23-1413C1BED8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library.Test", "MetricConverter.Library.Test\MetricConverter.Library.Test.csproj", "{CC35E320-979F-4C33-AD23-1413C1BED8CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

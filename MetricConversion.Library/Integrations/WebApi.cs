@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Encodings.Web;
 using MetricConverter.Library.Models;
 using Microsoft.Extensions.Configuration;
 

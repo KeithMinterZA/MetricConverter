@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.Serialization.Json;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace MetricConverter.Library.Integrations
@@ -19,22 +17,30 @@ namespace MetricConverter.Library.Integrations
 
         public async Task<T> Get<T>(string endpoint = "")
         {
-            //var enc = UrlEncoder.Create(new TextEncoderSettings());
-            //var uri = enc.Encode($"{BaseUrl}/{UrlSegment}/{endpoint}");
             var uri = $"{BaseUrl}/{UrlSegment}/{endpoint}";
             
             var client = new HttpClient
             {
                 BaseAddress = new Uri(uri)
             };
-            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
-            //var response = await client.GetAsync("");
             var response = await client.GetAsync("");
             var stream = await response.Content.ReadAsStreamAsync();
             var serializer = new DataContractJsonSerializer(typeof(T));
-            //var serializer = new Datacon(typeof(T));
             var obj = serializer.ReadObject(stream);
             return (T)obj;
+        }
+
+        public async void Post<T>(T model, string endpoint = "")
+        {
+            var uri = $"{BaseUrl}/{UrlSegment}/{endpoint}";
+
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(uri)
+            };
+            var response = await client.PostAsJsonAsync(endpoint, model);
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Could not connect to endpoint [{BaseUrl}/{UrlSegment}/{endpoint}]");
         }
     }
 }
