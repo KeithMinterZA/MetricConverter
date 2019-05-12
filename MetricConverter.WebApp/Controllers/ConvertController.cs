@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using MetricConverter.Library.Integrations;
-using MetricConverter.Library.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 
 namespace MetricConverter.WebApp.Controllers
 {
@@ -10,7 +8,7 @@ namespace MetricConverter.WebApp.Controllers
     public class ConvertController : Controller
     {
         private IWebApi WebApi { get; }
-        public ConvertController(IConfiguration config, IWebApi webApi)
+        public ConvertController(IWebApi webApi)
         {
             WebApi = webApi;
         }

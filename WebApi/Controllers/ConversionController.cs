@@ -11,10 +11,10 @@ namespace MetricConverter.WebApi.Controllers
     public class ConversionController : ControllerBase
     {
         private IConverterService Converter { get; }
-        private IConfiguration Configuration { get; }
+        //private IConfiguration Configuration { get; }
         public ConversionController(IConfiguration config, IConverterService converterService)
         {
-            Configuration = config;
+            //Configuration = config;
             Converter = converterService;
         }
 
