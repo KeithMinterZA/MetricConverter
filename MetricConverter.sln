@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApp", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library.Test", "MetricConverter.Library.Test\MetricConverter.Library.Test.csproj", "{CC35E320-979F-4C33-AD23-1413C1BED8CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApi.Test", "MetricConverter.WebApi.Test\MetricConverter.WebApi.Test.csproj", "{440E756D-D991-4066-B0AA-D0196B1DBE6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CC35E320-979F-4C33-AD23-1413C1BED8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC35E320-979F-4C33-AD23-1413C1BED8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC35E320-979F-4C33-AD23-1413C1BED8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

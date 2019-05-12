@@ -15,4 +15,8 @@
     <ProjectReference Include="..\MetricConversion.Library\MetricConverter.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

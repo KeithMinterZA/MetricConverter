@@ -14,11 +14,12 @@ namespace MetricConverter.WebApi.Controllers
         private IConverterService Converter { get; }
         private IHttpContextAccessor ContextAccessor { get; set; }
         private string RequestUser { get; set; }
-        public ConversionController(IConfiguration config, IConverterService converterService, IHttpContextAccessor httpContextAccessor)
+        public ConversionController(IConverterService converterService, IHttpContextAccessor httpContextAccessor)
         {
             Converter = converterService;
             ContextAccessor = httpContextAccessor;
-            RequestUser = ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? ContextAccessor.HttpContext.User.Identity.Name : "Unauthenticated";
+            RequestUser = ContextAccessor.HttpContext != null && ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? 
+                ContextAccessor.HttpContext.User.Identity.Name : "Unauthenticated";
         }
 
         [Route("[action]")]

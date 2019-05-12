@@ -5,5 +5,6 @@ namespace MetricConverter.Library.Repositories
     public interface IAuditRepository
     {
         void AuditAction(ActionAuditModel model);
+        ActionAuditModel GetAction(ActionAuditModel model);
     }
 }

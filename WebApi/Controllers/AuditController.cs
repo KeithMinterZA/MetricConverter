@@ -2,7 +2,6 @@
 using MetricConverter.Library.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace MetricConverter.WebApi.Controllers
 {
@@ -18,7 +17,7 @@ namespace MetricConverter.WebApi.Controllers
         {
             Repo = repo;
             ContextAccessor = httpContextAccessor;
-            RequestUser = ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? ContextAccessor.HttpContext.User.Identity.Name : "Unauthenticated";
+            RequestUser = ContextAccessor.HttpContext.User.Identity.IsAuthenticated ? ContextAccessor.HttpContext.User.Identity.Name : "UnAuthenticated";
         }
 
         // POST api/
@@ -28,6 +27,10 @@ namespace MetricConverter.WebApi.Controllers
             Repo.AuditAction(model);
         }
 
+        /// <summary>
+        /// A method I use to test the availability of a service
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
         public string Ping()
         {
