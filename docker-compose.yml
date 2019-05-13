@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  metricconverter.webapp:
+    image: ${DOCKER_REGISTRY-}metricconverterwebapp
+    build:
+      context: .
+      dockerfile: MetricConverter.WebApp/Dockerfile

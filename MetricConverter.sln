@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApp", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library.Test", "MetricConverter.Library.Test\MetricConverter.Library.Test.csproj", "{CC35E320-979F-4C33-AD23-1413C1BED8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApi.Test", "MetricConverter.WebApi.Test\MetricConverter.WebApi.Test.csproj", "{440E756D-D991-4066-B0AA-D0196B1DBE6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApi.Test", "MetricConverter.WebApi.Test\MetricConverter.WebApi.Test.csproj", "{440E756D-D991-4066-B0AA-D0196B1DBE6D}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F7D597E6-E90B-4BDA-A12D-B010801E052E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7D597E6-E90B-4BDA-A12D-B010801E052E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7D597E6-E90B-4BDA-A12D-B010801E052E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7D597E6-E90B-4BDA-A12D-B010801E052E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7D597E6-E90B-4BDA-A12D-B010801E052E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
