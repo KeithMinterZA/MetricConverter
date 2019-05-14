@@ -20,16 +20,16 @@ namespace MetricConverter.Services.Library
         public IEnumerable<string> GetFromUnits()
         {
             var convers = GetConversions();
-            return from conversion in convers
-                select conversion.FromUnit;
+            return (from conversion in convers
+                select conversion.FromUnit).Distinct();
         }
 
         public IEnumerable<string> GetToUnits(string fromUnit)
         {
             var convers = GetConversions();
-            return from conversion in convers
+            return (from conversion in convers
                    where conversion.FromUnit == fromUnit
-                   select conversion.ToUnit;
+                   select conversion.ToUnit).Distinct();
         }
 
         public IEnumerable<ConversionModel> GetConversions()
