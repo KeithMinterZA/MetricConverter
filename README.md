@@ -1,1 +1,98 @@
 # MetricConverter
+<h1>Good day</h1>
+<p>Thank you for reviewing my Metric Converter Web Assessment Solution, built with:</p>
+<ul>
+  <li>Visual Studio 2019 Community</li>
+  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
+  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
+  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+  <li><a href='https://dapper-tutorial.net/dapper/'>Dapper</a> for SQL ORM</li>
+</ul>
+
+<p><strong>Angular CLI integration</strong> is also set up, so that. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</p>
+<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+
+<h2>Running it</h2>
+<p>To run the project use the master branch. After opening the solution, enable multiple project start by going to solution properties, select 'multiple projects', then select to start the MetricConversion WebApi and WebApp projects.</p>
+<p>Run it in normal IIS Express mode as this branch is not containerized. Also set your browser to Chrome for debug support.</p>
+<p>The Git repository also contains a 'kubernetes' branch. That branch has the docker files included should you wish to try them. Please note however that they have not been tested and most likely will not work. See Challenges section below.</p>
+<p>Once you have it running you can jump straight to the Convert application my pressing Converter in the menu.</p>
+
+<h2>Design</h2>
+<p>The solution consits of two executable ASP.net MVC web projecs. An API and and Web Application.</p>
+<p>Additionally a Library project was included to contain common code.</p>
+<p>The API project contains two controllers, the AuditController demonstrates a design pattern for data access using Dapper as an ORM. The ConversionController contains the application logic.</p>
+<p>Ideally, the AuditController would reside in it's own DAAS RESTful API.</p>
+<p>Each Controller uses DI to inject a 'Service' which performs the work for the controller.</p>
+<p>The WebApp project contains a single controller for UI MVC, it communicates with the WebApi for conversion and Auditing purposes.</p>
+<p>Each project has Unit tests, including the controllers. However the Unit tests should be expanded for additional scenarios (such as negative tests) and full integration testing has not been implemented.</p>
+
+<h3>Unit Conversions</h3>
+<p>Conversions are performed by a ConverterService where the conversion configurations sit in the application config file. It could be moved to the DB, however residing in the config file (in .net core) allows live changes.</p>
+<p>A conversion configuration describes the 'from' and 'to' units and a value to convert the units. The conversion can either be a simple rate (ie 1m = 100cm at a rate of 100) or a type and method is provided for a type which can be uploaded at runtime, using reflection, which can perform more advanced calculations. </p>
+<p>To add a conversion, simply add the configuration to the config file. If a formula is needed, add a class to the MetricConverter.Library.PluginFormulas namespace. See Exsting FahrenheitFormulaService class and config as an exampe and specify the namespace, type and method in the config.</p>
+
+<h2>Project Report</h2>
+<p>For the purposes of this exercise I quickly familiarized myself with the following technologies.</p>
+<ul>
+  <li>Angular</li>
+  <li>TypeScript</li>
+  <li>Kubernetes</li>
+  <li>Docker</li>
+  <li>MiniKube, and setup locally on my pc</li>
+  <li>kubectl, and setup locally on my pc</li>
+  <li>Virtual Box, and setup locally on my pc</li>
+  <li>Python setup locally on my pc</li>
+</ul>
+
+<p>The following list shows the original requirements provided for this project. Additionally I indicate whether each requirement has been met.</p>
+<ol>
+  <li>Done - Create a WebAPI .Net Core API application for restful services.</li>
+  <li>Done - API application must use Nuget.</li>
+  <li>Done - API application needs to convert Metric units to Imperial units and vice versa.</li>
+  <li>Done - add more conversions - API application must cater for at least 5 conversions including temperature (adding a conversation should be very extensible).</li>
+  <li>Done - Create another application using the latest version of Angular for a front-end for your project.</li>
+  <li>Ensure that you have proper Unit (DONE) and Integration testing on both applications.</li>
+  <ul>
+    <li>Some Unit testing was done. However if this was to be a Production apption more testingtesting would be required, including negative testing etc.</li>
+    <li>Integration testing has not been done.</li>
+  </ul>
+  <li>The API application, Angular application and database needs to run on their own docker containers respectively.</li>
+  <ul><li>Docker containerization is applied, however it could not be tested. Please see Challenges.</li></ul>
+  <li>Add all necessary scripts in order to deploy docker containers to Kubernetes environment.</li>
+  <ul><li>Scripts have been created, however it could not be tested. Please see Challenges.</li></ul>
+  <li>Done - Upload your project into your own GIT Repo and share the project with us.</li>
+  <ul><li>Git Repo - https://github.com/KeithMinterZA/MetricConverter </li></ul>
+  <li><strong>[Optional – extra points]</strong></li>
+  <li>DONE - All user actions on the Angular frontend need to be stored in a relational database for auditing purposes (please include API’s for this purpose)</li>
+  <ul><li>Done, however certain actions are not yet tested, such as when the page is first accessed or reloaded.</li></ul>
+  <li>NOT DONE - Angular application must have a login page.</li>
+  <li>DONE - Properly abstract your data layer, use an ORM and PostgreSQL (MSSQL also acceptable) as your database implementation.</li>
+  <ul><li>An AuditRepository was created to demonstrate how data access may be achieved.</li></ul>
+</ol>
+
+<h3>Challenges</h3>
+<p>
+  I encountered difficulty getting Virtual Box working on my pc. The reason being I needed to enable a BIOS setting to enable virtualization on a hardware level for the VM software to work.<br />
+  <a href="https://askubuntu.com/questions/118006/amd-v-is-not-enabled-in-virtualbox-on-amd-apu">See this link</a>
+</p>
+-------------
+<p>
+  I was not able to get kubectl to communicate with minikube. Specifically, after I created a Docker image with kubectl, the image would not be available and I would receive the following errors.
+  This meant I could not push the image to a repository for Docker consumption.
+</p>
+<em>
+  <label>
+    C:\Users\kthmn>kubectl create deployment pod-converter-api --image=img-converter-api<br />
+    deployment.apps/pod-converter-api created<br />
+    C:\Users\kthmn>kubectl get pods<br />
+    kcm-metricconverter-9cf5b79d8-th6qr - <b>ImagePullBackOff</b><br />
+    pod-converter-api-bdc877f75-4ppwz   - <b>ErrImagePull</b><br />
+  </label>
+</em><br />
+-------------
+<p>
+  As I run Windows 10 Home at home, Virtualization is not supported, therefore I was not able to install Docker for Windows so that I could not test the container solution.<br />
+  I also attempted installing Docker Toolbar (a legacy product) but the installation was not successful.
+  https://forums.docker.com/t/installing-docker-on-windows-10-home/11722
+</p>
