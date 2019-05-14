@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApi", "WebApi\MetricConverter.WebApi.csproj", "{155FC01A-A764-4BFA-924B-8E002B209494}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library", "MetricConversion.Library\MetricConverter.Library.csproj", "{F547EE95-C2B3-442C-88D9-ED8132670DAC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApp", "MetricConverter.WebApp\MetricConverter.WebApp.csproj", "{FDFA3196-6221-4AD5-8CDA-E45A318ECAA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.Library.Test", "MetricConverter.Library.Test\MetricConverter.Library.Test.csproj", "{CC35E320-979F-4C33-AD23-1413C1BED8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricConverter.WebApi.Test", "MetricConverter.WebApi.Test\MetricConverter.WebApi.Test.csproj", "{440E756D-D991-4066-B0AA-D0196B1DBE6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApi.Test", "MetricConverter.WebApi.Test\MetricConverter.WebApi.Test.csproj", "{440E756D-D991-4066-B0AA-D0196B1DBE6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricConverter.WebApi", "MetricConverter.WebApi\MetricConverter.WebApi.csproj", "{FF5B11A7-D97B-49F0-8857-1DB0B367075F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{155FC01A-A764-4BFA-924B-8E002B209494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155FC01A-A764-4BFA-924B-8E002B209494}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155FC01A-A764-4BFA-924B-8E002B209494}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155FC01A-A764-4BFA-924B-8E002B209494}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F547EE95-C2B3-442C-88D9-ED8132670DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{440E756D-D991-4066-B0AA-D0196B1DBE6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF5B11A7-D97B-49F0-8857-1DB0B367075F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF5B11A7-D97B-49F0-8857-1DB0B367075F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF5B11A7-D97B-49F0-8857-1DB0B367075F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF5B11A7-D97B-49F0-8857-1DB0B367075F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

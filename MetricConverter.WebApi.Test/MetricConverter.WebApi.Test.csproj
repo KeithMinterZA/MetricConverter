@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MetricConversion.Library\MetricConverter.Library.csproj" />
-    <ProjectReference Include="..\WebApi\MetricConverter.WebApi.csproj" />
   </ItemGroup>
 
 </Project>
